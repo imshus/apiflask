@@ -6,7 +6,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Set up MongoDB connection
-client = MongoClient("mongodb+srv://imshu1:imshu1@cluster0.cagck.mongodb.net/")
+client = MongoClient("mongodb+srv://imshu1:imshu1@cluster0.cagck.mongodb.net/",ssl=True,
+                     ssl_cert_reqs=ssl.CERT_NONE)
 db = client.dashboard_db  # Database
 collection = db.insights  # Collection
 
