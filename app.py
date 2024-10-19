@@ -1,14 +1,14 @@
-from flask import Flask, jsonify
-from pymongo import MongoClient,ssl_support
+import os
+from flask import Flask, json, jsonify
+from pymongo import MongoClient
 from flask_cors import CORS
-import ssl
+
 
 app = Flask(__name__)
 CORS(app)
 
 # Set up MongoDB connection
-client = MongoClient("mongodb+srv://imshu1:imshu1@cluster0.cagck.mongodb.net/",ssl=True,
-                     ssl_cert_reqs=ssl.CERT_NONE)
+client = MongoClient("mongodb+srv://imshu1:imshu1@cluster0.cagck.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 db = client.dashboard_db  # Database
 collection = db.insights  # Collection
 
@@ -36,6 +36,11 @@ def get_all_data():
         return jsonify(data), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 4000))  # Default to 5000 if PORT isn't set
+    app.run(host='0.0.0.0', port=port)
 
 
 if __name__ == '__main__':
