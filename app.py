@@ -1,5 +1,5 @@
-from flask import Flask, jsonify,ssl_support
-from pymongo import MongoClient
+from flask import Flask, jsonify
+from pymongo import MongoClient,ssl_support
 from flask_cors import CORS
 import ssl
 
