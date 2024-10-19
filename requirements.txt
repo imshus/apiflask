@@ -1,6 +1,2 @@
-ipykernel
-numpy
-pandas
-matplotlib
-seaborn
+pymongo
 flask
